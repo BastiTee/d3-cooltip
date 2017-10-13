@@ -1,6 +1,5 @@
-import * as d3 from "d3" // You could refine this to certain modules only
+import * as d3 from "d3" 
 
-// Your plugin's closure
 export default function() {
     "use strict";
 

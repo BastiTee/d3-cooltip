@@ -4,6 +4,12 @@
 
 ![alt text](img/cooltip.gif)
 
+## Main features
+
+- Easy-to-use programming interface
+- Border detection to keep cooltips inside parent DIV/SVG
+- Multi-line support
+
 ## Usage
 
 First write a selector callback to define what the cooltip should display from your data. You can use `\n`-style linebreaks.

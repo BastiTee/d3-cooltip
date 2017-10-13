@@ -4,7 +4,7 @@
 
 ![alt text](img/cooltip.gif)
 
-[![GitHub release](https://img.shields.io/github/release/BastiTee/pyntrest.svg)](https://github.com/BastiTee/pyntrest/releases/latest)
+[![GitHub release](https://img.shields.io/github/release/BastiTee/d3-cooltip.svg)](https://github.com/BastiTee/d3-cooltip/releases/latest)
 [![Demo Online](https://img.shields.io/badge/watch-demo-green.svg)](https://bl.ocks.org/BastiTee/812b6d13f1e01b02cdcf1444f56505d1)
 
 ## Main features

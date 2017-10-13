@@ -100,42 +100,49 @@ export default function() {
         })
     }
 
+    // Opacity of surrounding cooltip box
     cooltip.opacity = function(value) {
         if (!arguments.length) return opacity
         opacity = value;
         return cooltip;
     }
 
+    // Padding size in px between text and cooltip box
     cooltip.padding = function(value) {
         if (!arguments.length) return padding
         padding = value;
         return cooltip;
     }
 
+    // Text color
     cooltip.color = function(value) {
         if (!arguments.length) return color
         color = value;
         return cooltip;
     }
 
+    // Box background color
     cooltip.fill = function(value) {
         if (!arguments.length) return fill
         fill = value;
         return cooltip;
     }
 
+    // Line height for multi-line tooltips in px
     cooltip.lineHeight = function(value) {
         if (!arguments.length) return lineHeight
         lineHeight = value;
         return cooltip;
     }
 
+    // Pixel rounding of surrounding box
     cooltip.roundCorners = function(value) {
         if (!arguments.length) return roundCorners
         roundCorners = value;
         return cooltip;
     }
 
+    // Selector callback function to determine cooltip content
     cooltip.selector = function(value) {
         if (!arguments.length) return selector
         selector = value;

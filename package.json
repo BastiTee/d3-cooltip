@@ -1,7 +1,7 @@
 {
-    "name": "d3-plugin-boilerplate",
+    "name": "d3-cooltip",
     "version": "0.1.0",
-    "description": "A ready-to-dine boilerplate for d3-plugins.",
+    "description": "A reusable tooltip plug-in for d3v4.",
     "keywords": [
         "d3",
         "d3-plugin",
@@ -10,23 +10,23 @@
         "canvas",
         "svg"
     ],
-    "homepage": "https://d3js.org/",
+    "homepage": "https://github.com/BastiTee/d3-cooltip",
     "license": " Apache-2.0",
     "author": {
         "name": "Basti Tee",
         "url": "https://basti.site"
     },
-    "main": "build/d3-plugin-boilerplate.js",
+    "main": "build/d3-cooltip.js",
     "module": "index",
     "jsnext:main": "index",
     "repository": {
         "type": "git",
-        "url": "https://github.com/BastiTee/d3-plugin-boilerplate.git"
+        "url": "https://github.com/BastiTee/d3-cooltip.git"
     },
     "scripts": {
-        "pretest": "rm -rf build && mkdir build && rollup --banner \"$(preamble)\" -f umd -g d3:d3 -n d3 -o build/d3-plugin-boilerplate.js -- index.js",
+        "pretest": "rm -rf build && mkdir build && rollup --banner \"$(preamble)\" -f umd -g d3:d3 -n d3 -o build/d3-cooltip.js -- index.js",
         "test": "tape 'test/**/*-test.js' && eslint index.js src",
-        "prepublish": "npm run test && uglifyjs --preamble \"$(preamble)\" build/d3-plugin-boilerplate.js -c -m -o build/d3-plugin-boilerplate.min.js"
+        "prepublish": "npm run test && uglifyjs --preamble \"$(preamble)\" build/d3-cooltip.js -c -m -o build/d3-cooltip.min.js"
     },
     "dependencies": {
         "d3": "4"

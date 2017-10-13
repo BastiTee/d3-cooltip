@@ -4,65 +4,139 @@ import * as d3 from "d3" // You could refine this to certain modules only
 export default function() {
     "use strict";
 
-    // A private variable 
-    var color = "#328a60"
-    // A private method
-    var update = function() {}
+    var opacity = 0.8
+    var padding = 5
+    var color = "white"
+    var fill = "black"
+    var lineHeight = 20
+    var roundCorners = 5
+    var selector = function() {
+        return new Date().toDateString() + "\n" +
+            String(Math.floor(Math.random() * 9e8))
+    }
 
-    // Plugin implementation operating on the provided selection, 
-    // usually an SVG object.
-    function pluginImpl(selection) {
+    function cooltip(selection) {
 
-        selection.each(function(data) {
-
-            // Next lines are just simple demo code, i.e., this boilerplate
-            // would append rectangles to the selection with the dimensions
-            // determined by the data provided.
-
-            // Replace the below code with your own initialization 
-            // implementation ... 
-
+        selection.each(function() {
             var s = d3.select(this)
-            s.selectAll(".rect")
-                .data(data).enter()
-                .append("rect")
-                .attr("class", "rect")
-                .attr("width", function(d) {
-                    return d["width"]
-                })
-                .attr("height", function(d) {
-                    return d["height"]
-                })
+            var root = this.ownerSVGElement
+            var dim = root.getBBox()
+            var active = false
+            var gTooltip, rect, text
 
-            // We have reached the update-function... 
-
-            update = function(first) {
-
-                first = first || false
-                first // just to trick the linter.
-
-                // add updatable part of charts here. The example sets 
-                // the rectangles to the provided color.
-                s.selectAll(".rect")
-                    .attr("fill", color)
+            var mousemove = function() {
+                var pos = d3.mouse(root)
+                var txtBox = rect.node().getBBox()
+                var newx = pos[0]
+                var newy = pos[1] - txtBox.height
+                // STOP ON BORDERS
+                // left side 
+                newx = newx - (txtBox.width / 2) < 0 ?
+                    txtBox.width / 2 : newx
+                // right side
+                newx = newx + (txtBox.width / 2) > dim.width ?
+                    dim.width - (txtBox.width / 2) : newx
+                // top side
+                newy = newy - padding < 0 ? padding : newy
+                // bottom side 
+                newy = newy + txtBox.height - padding > dim.height ?
+                    dim.height - txtBox.height + padding : newy
+                // move 
+                gTooltip.attr("transform", "translate(" +
+                    newx + "," + newy + ")")
             }
-            update(true)
+
+            var mouseout = function() {
+                if (!active) {
+                    return
+                }
+                active = false
+                gTooltip.remove()
+            }
+
+            var mouseover = function(d) {
+                if (active) {
+                    return
+                }
+                active = true
+                gTooltip = d3.select(root).append("g")
+                    .style("pointer-events", "none")
+                rect = gTooltip.append("rect")
+                text = gTooltip.append("text")
+                // append tooltip text
+                var string = "" + selector(d)
+                var split = string.split("\n")
+                for (var i in split) {
+                    text.append("tspan")
+                        .style("text-anchor", "middle")
+                        .style("dominant-baseline", "hanging")
+                        .style("fill", color)
+                        .attr("x", 0)
+                        .attr("dy", function() {
+                            return i == 0 ? 0 : lineHeight
+                        })
+                        .text(split[i])
+                }
+                // append background rectangle depending on text size
+                var txtBox = text.node().getBBox()
+                rect
+                    .attr("rx", roundCorners).attr("ry", roundCorners)
+                    .attr("width", txtBox.width + padding * 2)
+                    .attr("height", txtBox.height + padding * 2)
+                    .attr("x", -(txtBox.width / 2) - padding)
+                    .attr("y", -padding)
+                    .attr("opacity", opacity)
+                    .style("fill", fill)
+            }
+
+            s.on("mouseover", mouseover)
+            s.on("mouseout", mouseout)
+            s.on("mousemove", mousemove)
 
         })
     }
 
-    // A getter/setter best-practise method for private variables
-    pluginImpl.color = function(value) {
+    cooltip.opacity = function(value) {
+        if (!arguments.length) return opacity
+        opacity = value;
+        return cooltip;
+    }
+
+    cooltip.padding = function(value) {
+        if (!arguments.length) return padding
+        padding = value;
+        return cooltip;
+    }
+
+    cooltip.color = function(value) {
         if (!arguments.length) return color
         color = value;
-        return pluginImpl;
+        return cooltip;
     }
 
-    // A method to invoke the private update method
-    pluginImpl.update = function() {
-        update()
-        return pluginImpl
+    cooltip.fill = function(value) {
+        if (!arguments.length) return fill
+        fill = value;
+        return cooltip;
     }
 
-    return pluginImpl;
+    cooltip.lineHeight = function(value) {
+        if (!arguments.length) return lineHeight
+        lineHeight = value;
+        return cooltip;
+    }
+
+    cooltip.roundCorners = function(value) {
+        if (!arguments.length) return roundCorners
+        roundCorners = value;
+        return cooltip;
+    }
+
+    cooltip.selector = function(value) {
+        if (!arguments.length) return selector
+        selector = value;
+        return cooltip;
+    }
+
+    return cooltip
 }

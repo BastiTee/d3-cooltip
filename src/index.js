@@ -22,7 +22,9 @@ export default function() {
             var root = this.ownerSVGElement
             var dim = root.getBBox()
             var active = false
-            var gTooltip, rect, text
+            var gTooltip
+            var rect
+            var text
 
             var mousemove = function() {
                 var pos = d3.mouse(root)
@@ -63,6 +65,7 @@ export default function() {
                     .style("pointer-events", "none")
                 rect = gTooltip.append("rect")
                 text = gTooltip.append("text")
+                    .attr("class", "cooltip-text")
                 // append tooltip text
                 var string = "" + selector(d)
                 var split = string.split("\n")
@@ -80,6 +83,7 @@ export default function() {
                 // append background rectangle depending on text size
                 var txtBox = text.node().getBBox()
                 rect
+                    .attr("class", "cooltip-box")
                     .attr("rx", roundCorners).attr("ry", roundCorners)
                     .attr("width", txtBox.width + padding * 2)
                     .attr("height", txtBox.height + padding * 2)

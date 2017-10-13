@@ -4,10 +4,25 @@
 <head>
     <meta charset="utf-8">
     <title>d3-cooltip demo</title>
-    <!-- D3v4 basic library -->
     <script src="https://d3js.org/d3.v4.js"></script>
-    <!-- Your plugin -->
     <script src="../build/d3-cooltip.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Saira+Extra+Condensed');
+
+        .cooltip-box {
+            /* The box around the cooltip text */
+            stroke: orange;
+            stroke-width: 2;
+        }
+
+        .cooltip-text {
+            /* The cooltip text */
+            font-family: 'Saira Extra Condensed', sans-serif;
+            font-size: 150%;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -15,7 +30,7 @@
 </body>
 <script>
     d3.csv("data.csv", function(error, data) {
-        
+
         // setup basic canvas
         var widHei = 500
         var dim = widHei / 3
@@ -52,16 +67,17 @@
 
         // create the cooltip and configure it 
         var cooltip = d3.cooltip()
-            .color("lightgrey")
-            .fill("black")
             .opacity(0.7)
             .padding(10)
+            .color("lightgrey")
+            .fill("black")
             .roundCorners(10)
+            .lineHeight(25)
             .selector(cooltipText)
 
         // call it for each rectangle
         svg.selectAll(".rectangles").call(cooltip)
-        
+
     })
 </script>
 

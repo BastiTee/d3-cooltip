@@ -4,11 +4,15 @@
 
 ![alt text](img/cooltip.gif)
 
+[![GitHub release](https://img.shields.io/github/release/BastiTee/pyntrest.svg)](https://github.com/BastiTee/pyntrest/releases/latest)
+[![Demo Online](https://img.shields.io/badge/watch-demo-green.svg)](https://bl.ocks.org/BastiTee/812b6d13f1e01b02cdcf1444f56505d1)
+
 ## Main features
 
 - Easy-to-use programming interface
 - Border detection to keep cooltips inside parent DIV/SVG
 - Multi-line support
+
 
 ## Usage
 
@@ -65,7 +69,7 @@ Finally invoke a function call for any element you want to provide with your coo
 svg.selectAll(".rectangles").call(cooltip)
 ```
 
-A complete example is contained inside this repository. You can run it with..
+A complete [example](example/) is contained inside this repository. You can run it with..
 
 ```shell
 npm install

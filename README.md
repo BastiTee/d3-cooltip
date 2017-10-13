@@ -65,6 +65,16 @@ Finally invoke a function call for any element you want to provide with your coo
 svg.selectAll(".rectangles").call(cooltip)
 ```
 
+A complete example is contained inside this repository. You can run it with..
+
+```shell
+npm install
+sudo npm install -g http-server
+http-server
+```
+
+.. and then opening <http://127.0.0.1:8080/example/> in your browser.
+
 ## License
 
 Code is licensed under [Apache License Version 2.0](LICENSE).

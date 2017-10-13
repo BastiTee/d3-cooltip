@@ -12,7 +12,14 @@
 
 ## Usage
 
-First write a selector callback to define what the cooltip should display from your data. You can use `\n`-style linebreaks.
+Include library in your header. d3v4 is required as well.
+
+```html
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://cdn.rawgit.com/BastiTee/d3-cooltip/releases/download/0.1.0/d3-cooltip.min.js"></script>
+```
+
+Write a selector callback to define what the cooltip should display from your data. You can use `\n`-style linebreaks.
 
 ```javascript
 var cooltipText = function(d) {

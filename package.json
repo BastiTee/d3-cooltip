@@ -1,7 +1,7 @@
 {
     "name": "d3-cooltip",
     "version": "0.1.0",
-    "description": "A reusable tooltip plug-in for d3v4.",
+    "description": "A reusable tooltip plug-in for d3v4",
     "keywords": [
         "d3",
         "d3-plugin",
